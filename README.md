@@ -2,14 +2,14 @@
 
 ## 실행 시 참고사항
 - DB관련 설정 
--- MySQL 8.0.29 버전을 사용하였습니다.
--- DB연결 관련 설정파일은 총 2개의 파일입니다. username, password, url 설정은 로컬 환경에 맞춰 수정해주시기 바랍니다.
+  - MySQL 8.0.29 버전을 사용하였습니다.
+  - DB연결 관련 설정파일은 총 2개의 파일입니다. username, password, url 설정은 로컬 환경에 맞춰 수정해주시기 바랍니다.
 
---- kakaopysecTest/src/main/resources/META-INF/persistence.xml
-![image](https://user-images.githubusercontent.com/20436113/192613621-20e564a7-f0be-48cb-8ef7-ac1749ad503a.png)
+    - kakaopysecTest/src/main/resources/META-INF/persistence.xml
+      ![image](https://user-images.githubusercontent.com/20436113/192613621-20e564a7-f0be-48cb-8ef7-ac1749ad503a.png)
 
---- kakaopysecTest/src/main/resources/application.properties
-![image](https://user-images.githubusercontent.com/20436113/192613947-457c64fc-8153-43ac-85ff-1d52b5e0be22.png)
+    - kakaopysecTest/src/main/resources/application.properties
+      ![image](https://user-images.githubusercontent.com/20436113/192613947-457c64fc-8153-43ac-85ff-1d52b5e0be22.png)
 
 
 
@@ -30,11 +30,11 @@
 
 ## 구현
 - Application 구동 시 DB 적재
--- 1. stock_info 테이블 적재 : 제공받은 SampleData를 기반으로 작성된 엑셀파일을 프로젝트 디렉토리에 추가한 후 Application 구동 시 해당 엑셀파일을 읽어와 stock_info(종목정보) 테이블에 저장
--- [엑셀파일을 읽어 stock_info 엔티티 클래스로 반환 : ExcelPOIHelper.java]
-![image](https://user-images.githubusercontent.com/20436113/192616095-dba83443-39e3-455b-85cf-4f0851287d9d.png)
+  1. stock_info 테이블 적재 : 제공받은 SampleData를 기반으로 작성된 엑셀파일을 프로젝트 디렉토리에 추가한 후 Application 구동 시 해당 엑셀파일을 읽어와 stock_info(종목정보) 테이블에 저장
+    [엑셀파일을 읽어 stock_info 엔티티 클래스로 반환 : ExcelPOIHelper.java]
+    ![image](https://user-images.githubusercontent.com/20436113/192616095-dba83443-39e3-455b-85cf-4f0851287d9d.png)
 
--- 2. 일일 거래가 랜덤값 생성 후 테이블에 적재 :
+  2. 일일 거래가 랜덤값 생성 후 테이블에 적재 :
 
 
 
