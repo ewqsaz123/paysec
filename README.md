@@ -108,8 +108,10 @@
 
 
 ## 단위테스트
-
-
-
+- 쿼리 실행 단위 테스트 (QueryDSLTest.java)
+  - API에 사용되는 각 쿼리 실행에 대한 테스트
+  
+- 서비스 실행 단위 테스트 (StockServiceTest.java)
+  - Mock 객체를 이용한 서비스 테스트
 
 
