@@ -49,12 +49,13 @@
 
   - 일일 조회수 랜덤값 생성 후 테이블에 적재 : 종목별 코드 조회 후 조회수를 난수로 생성하여 stock_hit(종목조회) 테이블에 저장
   
-   [StockService.java]
+    [StockService.java]
    
     ![image](https://user-images.githubusercontent.com/20436113/192619692-11f5e278-d9cc-4439-8fa8-cfcc4ca0e84d.png)
 
 2. 모든 주제의 상위 5건 조회 API
   - url : localhost:8080/top5 , method: get
+  - 구현 방식
     - 각 주제별로 조회 쿼리를 분리하였고, size=5인 페이징을 사용하여 각 주제별 5개의 데이터만 조회하여 리턴
     - 각 주제별 조회 쿼리는 "주제별 조회 API" 에 사용한 쿼리를 재사용
     - 서비스 메소드에 대해 캐시 적용
@@ -74,14 +75,16 @@
 
 
 3. 주제별 조회 API
-  - "많이 본" (url : localhost:8080/top100/hit , method: get)
-  - "많이 오른" (url : localhost:8080/top100/increase , method: get)
-  - "많이 내린" (url : localhost:8080/top100/decrease , method: get)
-  - "거래량 많은" (url : localhost:8080/top100/trade , method: get)
+  - "많이 본" (URL : localhost:8080/top100/hit , method: GET)
+  - "많이 오른" (URL : localhost:8080/top100/increase , method: GET)
+  - "많이 내린" (URL : localhost:8080/top100/decrease , method: GET)
+  - "거래량 많은" (URL : localhost:8080/top100/trade , method: GET)
+  
+  - 구현 방식
     - JPA의 Pageable을 이용하여 페이징 적용
     - repository의 메소드 호출 시 파라미터로 (limit=100)을 전달하여 전체 데이터를 100개로 제한
     - 각 서비스 메소드에 대해 캐시 적용
-  
+
       [StockController.java]
       ![image](https://user-images.githubusercontent.com/20436113/192623030-f123d851-996b-4592-aba9-60278eb55014.png)
 
@@ -90,7 +93,17 @@
 
 
 - 순위를 랜덤하게 변경할 수 있는 API
-  
+  - URL : localhost:8080/changeRank , method: POST
+  - 구현 방식
+    - 종목별로 1번의 랜덤값 생성 방식과 동일한 방식으로 거래가, 거래량, 조회수에 대해 난수를 생성한 후에 각각의 테이블에 update
+    - 데이터가 변경되었으므로 캐시에 저장된 내용 모두 삭제
+    
+      [StockController.java]
+      ![image](https://user-images.githubusercontent.com/20436113/192625745-eca9662a-0ee0-486c-b411-8aa689d0f016.png)
+
+      [StockService.java]
+      ![image](https://user-images.githubusercontent.com/20436113/192625841-edc274b2-61e5-4c64-b342-9ea6f6716a1b.png)
+
 
 ## 단위테스트
 
