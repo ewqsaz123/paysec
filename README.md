@@ -99,9 +99,11 @@
     - 데이터가 변경되었으므로 캐시에 저장된 내용 모두 삭제
     
       [StockController.java]
+      
       ![image](https://user-images.githubusercontent.com/20436113/192625745-eca9662a-0ee0-486c-b411-8aa689d0f016.png)
 
       [StockService.java]
+      
       ![image](https://user-images.githubusercontent.com/20436113/192625841-edc274b2-61e5-4c64-b342-9ea6f6716a1b.png)
 
 
