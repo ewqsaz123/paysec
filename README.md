@@ -38,8 +38,8 @@
 
   - 일일 거래가 랜덤값 생성 후 테이블에 적재 : 어제 거래가를 난수로 생성한 후 해당 거래가를 기준으로 증감률 30%이하로 제한하여 오늘 거래가 랜덤값을 생성한 후 stock_price(종목가격) 테이블에 저장
  
-    
     [StockService.java]
+    
     ![image](https://user-images.githubusercontent.com/20436113/192618351-d3eaf13e-331a-458f-8bfe-03e5aa11e28d.png)
 
   - 일일 거래량 랜덤값 생성 후 테이블에 적재 : 종목별 오늘 거래가를 조회한 후 생성할 row개수를 난수를 생성한 후 row별 거래량 난수를 생성 후 stock_trade(종목거래) 테이블에 저장
@@ -49,8 +49,8 @@
 
   - 일일 조회수 랜덤값 생성 후 테이블에 적재 : 종목별 코드 조회 후 조회수를 난수로 생성하여 stock_hit(종목조회) 테이블에 저장
   
-   
    [StockService.java]
+   
     ![image](https://user-images.githubusercontent.com/20436113/192619692-11f5e278-d9cc-4439-8fa8-cfcc4ca0e84d.png)
 
 2. 모든 주제의 상위 5건 조회 API
