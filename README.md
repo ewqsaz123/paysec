@@ -25,7 +25,7 @@
 ## DB 설계
 ![database_diagram](https://user-images.githubusercontent.com/20436113/192611180-9da12c68-6820-4ad3-b808-0da644391342.png)
 
-- 주식 종목에 대한 기본정보를 저장하는 stock_info, 가격정보를 저장하는 stock_price, 거래량 및 거래가격을 저장하는 stock_trade, 종목에 대한 조회수를 저장하는 stock_hit로 총 5개의 테이블을 추가하였습니다.
+- 주식 종목에 대한 기본정보를 저장하는 (stock_info), 가격정보를 저장하는 (stock_price), 거래량 및 거래가격을 저장하는 (stock_trade), 종목에 대한 조회수를 저장하는 (stock_hit) 의 총 5개의 테이블을 추가하였습니다.
 
 
 
