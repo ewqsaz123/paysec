@@ -92,10 +92,10 @@
       ![image](https://user-images.githubusercontent.com/20436113/192623159-00248b43-eb45-4ae6-83cf-045194864ca4.png)
 
 
-- 순위를 랜덤하게 변경할 수 있는 API
+4. 순위를 랜덤하게 변경할 수 있는 API
   - URL : localhost:8080/changeRank , method: POST
   - 구현 방식
-    - 종목별로 1번의 랜덤값 생성 방식과 동일한 방식으로 거래가, 거래량, 조회수에 대해 난수를 생성한 후에 각각의 테이블에 update
+    - 종목별로 거래가, 거래량, 조회수에 대해 난수를 생성한 후에 각각의 테이블에 update
     - 데이터가 변경되었으므로 캐시에 저장된 내용 모두 삭제
     
       [StockController.java]
