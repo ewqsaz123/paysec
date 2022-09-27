@@ -1,4 +1,3 @@
-# paysec
 
 ## 실행 시 참고사항
 - DB관련 설정 
@@ -22,21 +21,67 @@
 - 각 테이블 간의 연관성을 고려하여 관계형 DB인 MySQL을 사용하였습니다.
 
 
+
 ## DB 설계
 ![database_diagram](https://user-images.githubusercontent.com/20436113/192611180-9da12c68-6820-4ad3-b808-0da644391342.png)
 
 - 주식 종목에 대한 기본정보를 저장하는 stock_info, 가격정보를 저장하는 stock_price, 거래량 및 거래가격을 저장하는 stock_trade, 종목에 대한 조회수를 저장하는 stock_hit로 총 5개의 테이블을 추가하였습니다.
 
 
+
 ## 구현
 - Application 구동 시 DB 적재
-  1. stock_info 테이블 적재 : 제공받은 SampleData를 기반으로 작성된 엑셀파일을 프로젝트 디렉토리에 추가한 후 Application 구동 시 해당 엑셀파일을 읽어와 stock_info(종목정보) 테이블에 저장
+  1. 엑셀파일을 읽어 stock_info 테이블 적재 : 제공받은 SampleData를 기반으로 작성된 엑셀파일을 프로젝트 디렉토리에 추가한 후 Application 구동 시 해당 엑셀파일을 읽어와 stock_info(종목정보) 테이블에 저장
     [엑셀파일을 읽어 stock_info 엔티티 클래스로 반환 : ExcelPOIHelper.java]
     ![image](https://user-images.githubusercontent.com/20436113/192616095-dba83443-39e3-455b-85cf-4f0851287d9d.png)
 
-  2. 일일 거래가 랜덤값 생성 후 테이블에 적재 :
+  2. 일일 거래가 랜덤값 생성 후 테이블에 적재 : 어제 거래가를 난수로 생성한 후 해당 거래가를 기준으로 증감률 30%이하로 제한하여 오늘 거래가 랜덤값을 생성한 후 stock_price(종목가격) 테이블에 저장
+    [StockService.java]
+    ![image](https://user-images.githubusercontent.com/20436113/192618351-d3eaf13e-331a-458f-8bfe-03e5aa11e28d.png)
+
+  3. 일일 거래량 랜덤값 생성 후 테이블에 적재 : 종목별 오늘 거래가를 조회한 후 생성할 row개수를 난수를 생성한 후 row별 거래량 난수를 생성 후 stock_trade(종목거래) 테이블에 저장
+    [StockService.java]
+    ![image](https://user-images.githubusercontent.com/20436113/192619248-61667fd5-24af-4680-8476-57a5d526f938.png)
+
+  4. 일일 조회수 랜덤값 생성 후 테이블에 적재 : 종목별 코드 조회 후 조회수를 난수로 생성하여 stock_hit(종목조회) 테이블에 저장
+    [StockService.java]
+    ![image](https://user-images.githubusercontent.com/20436113/192619692-11f5e278-d9cc-4439-8fa8-cfcc4ca0e84d.png)
+
+- 모든 주제의 상위 5건 조회 API
+  - url : localhost:8080/top5 , method: get
+   1. 각 주제별로 조회 쿼리를 분리하였고, size=5인 페이징을 사용하여 각 주제별 5개의 데이터만 조회하여 리턴
+   2. 각 주제별 조회 쿼리는 "주제별 조회 API" 에 사용한 쿼리를 재사용
+   3. 서비스 메소드에 대해 캐시 적용
+   
+     [StockController.java]
+     ![image](https://user-images.githubusercontent.com/20436113/192621415-d52ade03-387e-454d-a255-4c61b426a582.png)
+
+     [StockService.java]
+     ![image](https://user-images.githubusercontent.com/20436113/192621532-abd97c44-7bcc-4ae3-8d40-0cbff6fda35a.png)
+
+     [StockListRepository.java]
+     ![image](https://user-images.githubusercontent.com/20436113/192621688-451ab518-d9d1-44b4-b14d-266529ade480.png)
 
 
+
+- 주제별 조회 API
+  - "많이 본" (url : localhost:8080/top100/hit , method: get)
+  - "많이 오른" (url : localhost:8080/top100/increase , method: get)
+  - "많이 내린" (url : localhost:8080/top100/decrease , method: get)
+  - "거래량 많은" (url : localhost:8080/top100/trade , method: get)
+  1. JPA의 Pageable을 이용하여 페이징 적용
+  2. repository의 메소드 호출 시 파라미터로 (limit=100)을 전달하여 전체 데이터를 100개로 제한
+  3. 각 서비스 메소드에 대해 캐시 적용
+  
+    [StockController.java]
+    ![image](https://user-images.githubusercontent.com/20436113/192623030-f123d851-996b-4592-aba9-60278eb55014.png)
+
+    [StockService.java]
+    ![image](https://user-images.githubusercontent.com/20436113/192623159-00248b43-eb45-4ae6-83cf-045194864ca4.png)
+
+
+- 순위를 랜덤하게 변경할 수 있는 API
+  
 
 ## 단위테스트
 
