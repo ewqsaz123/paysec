@@ -32,18 +32,22 @@
 ## 구현
 1. Application 구동 시 DB 적재
   - 엑셀파일을 읽어 stock_info 테이블 적재 : 제공받은 SampleData를 기반으로 작성된 엑셀파일을 프로젝트 디렉토리에 추가한 후 Application 구동 시 해당 엑셀파일을 읽어와 stock_info(종목정보) 테이블에 저장
+   
     [엑셀파일을 읽어 stock_info 엔티티 클래스로 반환 : ExcelPOIHelper.java]
     ![image](https://user-images.githubusercontent.com/20436113/192616095-dba83443-39e3-455b-85cf-4f0851287d9d.png)
 
   - 일일 거래가 랜덤값 생성 후 테이블에 적재 : 어제 거래가를 난수로 생성한 후 해당 거래가를 기준으로 증감률 30%이하로 제한하여 오늘 거래가 랜덤값을 생성한 후 stock_price(종목가격) 테이블에 저장
+ 
     [StockService.java]
     ![image](https://user-images.githubusercontent.com/20436113/192618351-d3eaf13e-331a-458f-8bfe-03e5aa11e28d.png)
 
   - 일일 거래량 랜덤값 생성 후 테이블에 적재 : 종목별 오늘 거래가를 조회한 후 생성할 row개수를 난수를 생성한 후 row별 거래량 난수를 생성 후 stock_trade(종목거래) 테이블에 저장
+  
     [StockService.java]
     ![image](https://user-images.githubusercontent.com/20436113/192619248-61667fd5-24af-4680-8476-57a5d526f938.png)
 
   - 일일 조회수 랜덤값 생성 후 테이블에 적재 : 종목별 코드 조회 후 조회수를 난수로 생성하여 stock_hit(종목조회) 테이블에 저장
+  
     [StockService.java]
     ![image](https://user-images.githubusercontent.com/20436113/192619692-11f5e278-d9cc-4439-8fa8-cfcc4ca0e84d.png)
 
@@ -69,9 +73,9 @@
   - "많이 오른" (url : localhost:8080/top100/increase , method: get)
   - "많이 내린" (url : localhost:8080/top100/decrease , method: get)
   - "거래량 많은" (url : localhost:8080/top100/trade , method: get)
-    - JPA의 Pageable을 이용하여 페이징 적용
-    - repository의 메소드 호출 시 파라미터로 (limit=100)을 전달하여 전체 데이터를 100개로 제한
-    - 각 서비스 메소드에 대해 캐시 적용
+    - 1. JPA의 Pageable을 이용하여 페이징 적용
+    - 2. repository의 메소드 호출 시 파라미터로 (limit=100)을 전달하여 전체 데이터를 100개로 제한
+    - 3. 각 서비스 메소드에 대해 캐시 적용
   
       [StockController.java]
       ![image](https://user-images.githubusercontent.com/20436113/192623030-f123d851-996b-4592-aba9-60278eb55014.png)
