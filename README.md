@@ -54,11 +54,11 @@
     ![image](https://user-images.githubusercontent.com/20436113/192619692-11f5e278-d9cc-4439-8fa8-cfcc4ca0e84d.png)
 
 2. 모든 주제의 상위 5건 조회 API
-  - url : localhost:8080/top5 , method: get
+  - url : localhost:8080/top5 , method: GET
   - 구현 방식
     - 각 주제별로 조회 쿼리를 분리하였고, size=5인 페이징을 사용하여 각 주제별 5개의 데이터만 조회하여 리턴
     - 각 주제별 조회 쿼리는 "주제별 조회 API" 에 사용한 쿼리를 재사용
-    - 서비스 메소드에 대해 캐시 적용
+    - 서비스 메소드에 대해 캐싱 적용
    
      [StockController.java]
      
@@ -83,7 +83,7 @@
   - 구현 방식
     - JPA의 Pageable을 이용하여 페이징 적용
     - repository의 메소드 호출 시 파라미터로 (limit=100)을 전달하여 전체 데이터를 100개로 제한
-    - 각 서비스 메소드에 대해 캐시 적용
+    - 각 서비스 메소드에 대해 캐싱 적용
 
       [StockController.java]
       ![image](https://user-images.githubusercontent.com/20436113/192623030-f123d851-996b-4592-aba9-60278eb55014.png)
