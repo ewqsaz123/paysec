@@ -96,7 +96,7 @@
   - URL : localhost:8080/changeRank , method: POST
   - 구현 방식
     - 종목별로 거래가, 거래량, 조회수에 대해 난수를 생성한 후에 각각의 테이블에 update
-    - 데이터가 변경되었으므로 캐시에 저장된 내용 모두 삭제
+    - 데이터가 변경되었으므로 캐시에 저장된 내용 모두 삭제하여 이후 조회 API 요청 시 DB에서 최신의 데이터를 불러올 수 있도록 작성
     
       [StockController.java]
       
