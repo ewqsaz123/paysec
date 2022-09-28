@@ -42,7 +42,7 @@
     
     ![image](https://user-images.githubusercontent.com/20436113/192618351-d3eaf13e-331a-458f-8bfe-03e5aa11e28d.png)
 
-  - 일일 거래량 랜덤값 생성 후 테이블에 적재 : 종목별 오늘 거래가를 조회한 후 생성할 row개수를 난수를 생성한 후 row별 거래량 난수를 생성 후 stock_trade(종목거래) 테이블에 저장
+  - 일일 거래량 랜덤값 생성 후 테이블에 적재 : 종목별 오늘 거래가를 조회한 후 생성할 row개수를 난수로 생성하고 각 row별 거래량 난수를 생성 후 stock_trade(종목거래) 테이블에 저장
   
     [StockService.java]
     ![image](https://user-images.githubusercontent.com/20436113/192619248-61667fd5-24af-4680-8476-57a5d526f938.png)
